@@ -1,0 +1,122 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    padding: 0; 
+    margin: 0;
+}
+:root {
+    --background: #757575;
+}
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    color: rgb(184, 182, 182)
+}
+.header {
+    width: 100%;
+    height: 10vh;
+    position: fixed;
+    background: var(--background);
+    display: grid;
+    grid-template-columns: 50px auto minmax(100px, 1fr) auto 50px;
+    place-items: center end;
+}
+.checkbox {
+    grid-column: 4 / 5;
+}
+.logo {
+    grid-column: 2 / 3;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #fff;
+}
+.menu--style {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 20px 0;
+    background: var(--background);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transform: scale(0, 1);
+    transform-origin: right;
+    transition: transform .7s ease-in-out;
+}
+.menu__item {
+    margin-left: 100px;
+    margin-bottom: 1.2em;
+    color: #fff;
+    opacity: 0;
+    transition: opacity .3s ease-in-out .3s;
+    position: relative;
+}
+.menu__item::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -.45em;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: gold;
+    transform: scale(0, 1);
+    transition: transform ease-in-out .3s;
+}
+.menu__item:hover::before {
+    transform: scale(1, 1);
+}
+.checkbox__toggler {
+    display: none;
+}
+.checkbox__toggler:checked ~ .menu {
+    transform: scale(1, 1);
+}
+.checkbox__toggler:checked ~ .menu .menu__item {
+    opacity: 1;
+    transition: opacity .3s ease-in-out .3s;
+}
+.checkbox__label {
+    padding: 10px;
+    cursor: pointer;
+}
+.checkbox__icon,
+.checkbox__icon::before, 
+.checkbox__icon::after {
+    display: block;
+    width: 1.5em;
+    height: 2px;
+    border-radius: 2px;
+    background: #fff;
+    position: relative
+}
+.checkbox__icon::before, .checkbox__icon::after {
+    content: '';
+    position: absolute;
+}
+.checkbox__icon::before {
+    bottom: 7px;
+}
+.checkbox__icon::after {
+    top: 7px;
+}
+
+
+
+@media (min-width: 768px) {
+    
+    .checkbox__label {
+        display: none;
+    }
+    .menu {
+        all: unset;
+    }
+    .menu__item {
+        padding: 5px;
+        margin: 15px;
+        opacity: 1;
+    }
+}
